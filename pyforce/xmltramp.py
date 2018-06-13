@@ -1,3 +1,4 @@
+import sys
 
 from xml.sax import make_parser
 from xml.sax.handler import (
@@ -144,7 +145,7 @@ class Element(object):
         return ' '.join(text.split())
 
     def __str__(self):
-        return self.__unicode__().encode('utf-8')
+        return self.__unicode__()
 
     def __getattr__(self, n):
         if n[0] == '_':
@@ -333,7 +334,7 @@ def seed(fileobj):
 
 def parse(text):
     from io import StringIO
-    return seed(StringIO(text))
+    return seed(StringIO(text.decode('utf-8')))
 
 
 def load(url):

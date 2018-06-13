@@ -32,8 +32,8 @@ _tSoapNS = xmltramp.Namespace(_envNs)
 _tSchemaInstanceNS = xmltramp.Namespace(_schemaInstanceNs)
 
 # global config
-gzipRequest = True    # are we going to gzip the request ?
-gzipResponse = True   # are we going to tell teh server to gzip the response ?
+gzipRequest = False    # are we going to gzip the request ?
+gzipResponse = False   # are we going to tell teh server to gzip the response ?
 forceHttp = False     # force all connections to be HTTP, for debugging
 
 _logger = logging.getLogger(__name__)
