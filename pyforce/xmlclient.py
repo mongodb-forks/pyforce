@@ -705,7 +705,7 @@ class SetPasswordRequest(AuthenticatedRequest):
 class DescribeSObjectsRequest(AuthenticatedRequest):
     def __init__(self, serverUrl, sessionId, sObjectTypes):
         super(DescribeSObjectsRequest, self).__init__(
-            serverUrl, sessionId, sObjectTypes)
+            serverUrl, sessionId, "describeSObjects")
         self.__sObjectTypes = sObjectTypes
 
     def writeBody(self, s):

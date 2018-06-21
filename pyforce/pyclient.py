@@ -20,7 +20,10 @@ _logger = logging.getLogger("pyforce.{0}".format(__name__))
 
 class QueryRecord(dict):
     def __getattr__(self, n):
-        return self[n]
+        try:
+            return self[n]
+        except KeyError:
+            raise AttributeError
 
     def __setattr__(self, n, v):
         self[n] = v
@@ -43,7 +46,9 @@ class QueryRecordSet(list):
             attr = getattr(self, n, None)
             if attr is None:
                 raise KeyError
-        raise ValueError(n)
+        else:
+            return list.__getitem__(self, n)
+        raise IndexError(n)
 
 
 class SObject(object):
