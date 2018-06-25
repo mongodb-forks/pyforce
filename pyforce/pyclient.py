@@ -541,7 +541,7 @@ def _doPrep(field_dict):
         if value is None:
             fieldsToNull.append(key)
             field_dict[key] = []
-        if hasattr(value, '__iter__'):
+        if (not isinstance(value, str)) and hasattr(value, '__iter__'):
             if len(value) == 0:
                 fieldsToNull.append(key)
             elif isinstance(value, dict):
