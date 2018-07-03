@@ -1,6 +1,7 @@
 import re
 import logging
 import datetime
+import sys
 
 from pyforce.common import bool_
 from pyforce.xmlclient import _tSObjectNS
@@ -52,7 +53,10 @@ def textMarshaller(fieldname, xml, ns):
     text = ''
     for x in node._dir:
         text += x
-    return text.encode('utf-8')
+    if sys.version_info.major < 3:
+        return text.encode('utf-8')
+    else:
+        return text
 
 register(texttypes, textMarshaller)
 
