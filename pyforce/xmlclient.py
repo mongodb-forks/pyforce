@@ -460,7 +460,7 @@ class SoapEnvelope(object):
                 if conn is None:
                     conn = makeConnection(scheme, host)
                     close = True
-                conn.request("POST", path, self.makeEnvelope(), headers)
+                conn.request("POST", path, self.makeEnvelope().encode('utf-8'), headers)
                 response = conn.getresponse()
                 rawResponse = response.read()
             except (httplib.HTTPException, socket.error):
