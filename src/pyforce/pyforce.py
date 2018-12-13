@@ -92,9 +92,14 @@ class Client(BaseClient):
 
     def isConnected(self):
         """ First pass at a method to check if we're connected or not """
-        if self.__conn and self.__conn._HTTPConnection__state == 'Idle':
-            return True
-        return False
+        result = False
+        if self.__conn:
+            state = self.__conn._HTTPConnection__state
+            if state == 'Idle':
+                result = True
+            else:
+                _logger.error("isConnected_HTTPConnection__state == {}".format(state))
+        return result
 
     def describeGlobal(self):
         res = BaseClient.describeGlobal(self)
